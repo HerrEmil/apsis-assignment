@@ -1,1 +1,21 @@
-Angular stuff goes here
+<!doctype html>
+<html ng-app="bowlingApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body>
+		<div ng-controller="GameController as game">
+			<ol>
+				<li ng-repeat="frame in game.frames">
+					<input type="text" model="frame.first">
+					<input type="text" model="frame.second">
+					<input type="text" model="frame.bonus" ng-if="frame.bonus !== undefined">
+				</li>
+			</ol>
+			<a href="" ng-click="game.calculate()">Calculate</a>
+			<h1>Response:</h1>
+			<h1>{{game.result}}</h1>
+		</div>
+	</body>
+</html>
