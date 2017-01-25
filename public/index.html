@@ -8,12 +8,11 @@
 		<div ng-controller="GameController as game">
 			<ol>
 				<li ng-repeat="frame in game.frames">
-					<input type="number" min="0" max="10" ng-model="frame.first">
-					<input type="number" min="0" max="10" ng-model="frame.second">
-					<input type="number" min="0" max="10" ng-model="frame.bonus" ng-if="frame.bonus !== undefined">
+					<input type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()">
+					<input type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()">
+					<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="frame.bonus !== undefined">
 				</li>
 			</ol>
-			<a href="" ng-click="game.calculate()">Calculate</a>
 			<h1>Score: {{game.result}}</h1>
 		</div>
 	</body>
