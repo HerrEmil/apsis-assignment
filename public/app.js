@@ -43,7 +43,7 @@ app.controller('GameController', function($http) {
 				"frames": game.frames
 			})
 			.then(function successCallback(response) {
-				game.result = response.data;
+				game.result = response.data.score;
 			}, function errorCallback(response) {
 				console.log('error:');
 				console.log(response);
