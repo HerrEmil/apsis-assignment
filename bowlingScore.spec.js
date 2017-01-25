@@ -52,7 +52,7 @@ describe('A perfect Game', function() {
 
 
 describe('A game with no pins knocked down', function() {
-	it('should get a score of 300', function() {
+	it('should get a score of 0', function() {
 		let request, response, spy;
 		request = response = {};
 
@@ -150,14 +150,14 @@ describe('An open frame', function() {
 
 
 describe('A strike', function() {
-	it('should be worth 10 + the number of pins knowcked down in the two following rolls', function() {
+	it('should be worth 10 + the number of pins knocked down in the two following rolls', function() {
 		let request, response, spy;
 		request = response = {};
 
 		request.body = {
 			frames: [{
-				first: '5',
-				second: '5'
+				first: '10',
+				second: ''
 			}, {
 				first: '1',
 				second: '1'
@@ -199,7 +199,7 @@ describe('A strike', function() {
 
 
 describe('A spare', function() {
-	it('should be worth 10 + the number of pins knowcked down in the following roll', function() {
+	it('should be worth 10 + the number of pins knocked down in the following roll', function() {
 		let request, response, spy;
 		request = response = {};
 
