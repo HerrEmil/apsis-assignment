@@ -8,6 +8,8 @@
     "test": "echo \"TODO: add tests\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "path": "^0.12.7"
   }
 }

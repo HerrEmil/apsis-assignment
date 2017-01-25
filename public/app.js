@@ -39,7 +39,9 @@ app.controller('GameController', function($http) {
 	game.result = 0;
 
 	game.calculate = function() {
-		$http.post('/calculate-bowling-score', game.frames)
+		$http.post('/calculate-bowling-score', {
+				"frames": game.frames
+			})
 			.then(function successCallback(response) {
 				game.result = response.data;
 			}, function errorCallback(response) {
