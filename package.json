@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"TODO: add tests\" && exit 1"
+    "test": "mocha *spec.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "body-parser": "^1.16.0",
     "express": "^4.14.0",
-    "path": "^0.12.7"
+    "mocha": "^3.2.0",
+    "path": "^0.12.7",
+    "sinon": "^1.17.7"
   }
 }
