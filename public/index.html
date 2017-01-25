@@ -8,9 +8,9 @@
 		<div ng-controller="GameController as game">
 			<ol>
 				<li ng-repeat="frame in game.frames">
-					<input type="text" ng-model="frame.first">
-					<input type="text" ng-model="frame.second">
-					<input type="text" ng-model="frame.bonus" ng-if="frame.bonus !== undefined">
+					<input type="number" min="0" max="10" ng-model="frame.first">
+					<input type="number" min="0" max="10" ng-model="frame.second">
+					<input type="number" min="0" max="10" ng-model="frame.bonus" ng-if="frame.bonus !== undefined">
 				</li>
 			</ol>
 			<a href="" ng-click="game.calculate()">Calculate</a>

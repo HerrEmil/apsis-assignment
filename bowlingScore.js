@@ -1,3 +1,7 @@
+function validRoll(roll) {
+	return roll != null && roll != '';
+}
+
 function calculateTotal(req, res) {
 	// console.log('Received request:')
 	// console.log(req.body);
@@ -9,15 +13,14 @@ function calculateTotal(req, res) {
 
 	for (let i = 0; i < frames.length; i += 1) {
 		first = second = bonus = nextFrameRoll = 0;
-
 		// Check if the rolls are valid
-		if (frames[i].first != '') {
+		if (validRoll(frames[i].first)) {
 			first = parseInt(frames[i].first);
 		}
-		if (frames[i].second != '') {
+		if (validRoll(frames[i].second)) {
 			second = parseInt(frames[i].second);
 		}
-		if (frames[i].bonus != undefined && frames[i].bonus != '') {
+		if (frames[i].bonus != undefined && validRoll(frames[i].bonus)) {
 			bonus = parseInt(frames[i].bonus)
 		}
 
@@ -26,7 +29,7 @@ function calculateTotal(req, res) {
 
 		// Store the value of the next frame's first roll for strikes and spares
 		if (frames[i + 1] != undefined && // We are not in the last frame
-			frames[i + 1].first != '') { // The next roll has a value
+			validRoll(frames[i + 1].first)) { // The next roll has a value
 			nextFrameRoll = parseInt(frames[i + 1].first);
 		}
 
@@ -38,17 +41,18 @@ function calculateTotal(req, res) {
 			// the second following roll is the second roll in the next frame
 			if (nextFrameRoll != 10 &&
 				frames[i + 1] != undefined &&
-				frames[i + 1].second != '') {
+				validRoll(frames[i + 1].second)) {
 				score += parseInt(frames[i + 1].second)
 			}
 			// next roll a strike
 			if (nextFrameRoll === 10 &&
-				frames[i + 2] != undefined) {
+				frames[i + 2] != undefined &&
+				validRoll(frames[i + 2].first)) {
 				score += parseInt(frames[i + 2].first)
 			}
 			// Second to last frame
 			if (i === 8 &&
-				frames[9].second != '') {
+				validRoll(frames[9].second)) {
 				score += parseInt(frames[i + 1].second);
 			}
 		} else if (first + second === 10) {
