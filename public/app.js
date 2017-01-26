@@ -1,6 +1,6 @@
-var app = angular.module('bowlingApp', []);
+var app = angular.module('bowlingApp', ['calculateService']);
 
-app.controller('GameController', function($http) {
+app.controller('GameController', function($http, Calculator) {
 	var game = this;
 
 	game.frames = [{
@@ -39,14 +39,6 @@ app.controller('GameController', function($http) {
 	game.result = 0;
 
 	game.calculate = function() {
-		$http.post('/calculate-bowling-score', {
-				"frames": game.frames
-			})
-			.then(function successCallback(response) {
-				game.result = response.data.score;
-			}, function errorCallback(response) {
-				console.log('error:');
-				console.log(response);
-			});
-	};
+		Calculator.calculate(game);
+	}
 });
