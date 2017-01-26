@@ -4,14 +4,22 @@
   "description": "Express / Angular app calculating ten pin bowling scores.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "build-css": "stylus index.styl -o public/css",
+    "watch-css": "stylus index.styl -o public/css -w",
+    "watch-js": "nodemon server.js -e js",
+    "clean": "cd public && rm -rf css && mkdir css",
+    "start": "npm run clean && npm run build-css && node server.js",
+    "dev": "npm-run-all --parallel clean watch-css watch-js",
     "test": "mocha *spec.js"
   },
   "devDependencies": {
     "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.1",
     "path": "^0.12.7",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "stylus": "^0.54.5"
   }
 }
