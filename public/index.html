@@ -16,11 +16,14 @@
 					<div class="frame-number">
 						{{$index + 1}}
 					</div>
-					<div class="rolls-container">
-						<input type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()" class="roll">
-						<input type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()" class="roll">
-						<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="$index == 9" class="roll">
+					<div class="rolls-container" ng-form="form">
+						<input name="first" type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()" class="roll">
+						<input name="second" type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()" class="roll">
+						<input name="bonus" type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="$index == 9" class="roll">
 					</div>
+					<p ng-show="form.first.$invalid">Invalid roll in first input.</p>
+					<p ng-show="form.second.$invalid">Invalid roll in second input.</p>
+					<p ng-show="form.bonus.$invalid">Invalid roll in third input.</p>
 				</li>
 				<div class="frame total">Score: {{game.result}}</div>
 			</ol>
