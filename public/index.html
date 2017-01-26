@@ -1,20 +1,29 @@
 <!doctype html>
 <html ng-app="bowlingApp">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 		<script src="app.service.js"></script>
 		<script src="app.js"></script>
 	</head>
 	<body>
+		<h1>Bowling Scoring Sheet</h1>
 		<div ng-controller="GameController as game">
-			<ol>
-				<li ng-repeat="frame in game.frames">
-					<input type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()">
-					<input type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()">
-					<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="frame.bonus !== undefined">
+			<ol class="game">
+				<li ng-repeat="frame in game.frames" class="frame">
+					<div class="frame-number">
+						{{$index + 1}}
+					</div>
+					<div class="rolls-container">
+						<input type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()" class="roll">
+						<input type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()" class="roll">
+						<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="frame.bonus !== undefined" class="roll">
+					</div>
 				</li>
+				<div class="frame total">Score: {{game.result}}</div>
 			</ol>
-			<h1>Score: {{game.result}}</h1>
 		</div>
 	</body>
 </html>
