@@ -19,7 +19,7 @@
 					<div class="rolls-container">
 						<input type="number" min="0" max="10" ng-model="frame.first" ng-change="game.calculate()" class="roll">
 						<input type="number" min="0" max="10" ng-model="frame.second" ng-change="game.calculate()" class="roll">
-						<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="frame.bonus !== undefined" class="roll">
+						<input type="number" min="0" max="10" ng-model="frame.bonus" ng-change="game.calculate()" ng-if="$index == 9" class="roll">
 					</div>
 				</li>
 				<div class="frame total">Score: {{game.result}}</div>
