@@ -2,248 +2,62 @@ const assert = require('assert');
 const sinon = require('sinon');
 const Calculator = require('./calculator');
 
-const bowlingScore = new Calculator();
 
-describe('A perfect Game', function() {
-	it('should get a score of 300', function() {
-		let request, response, spy;
-		request = response = {};
+describe('Calculator class', function() {
+	const calculator = new Calculator();
 
-		request.body = {
-			frames: [{
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: ''
-			}, {
-				first: '10',
-				second: '10',
-				bonus: '10'
-			}]
-		};
+	describe('calculateTotal()', function() {
+		it('should accept requests and send responses with the correct structure', function() {
+			let request, response, spy;
+			request = response = {};
 
-		response.send = sinon.spy();
+			request.body = {
+				frames: [{
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: ''
+				}, {
+					first: '',
+					second: '',
+					bonus: ''
+				}]
+			};
 
-		bowlingScore.calculateTotal(request, response);
+			response.send = sinon.spy();
 
-		assert.equal(response.send.args[0][0].score, 300);
-	});
-});
+			calculator.calculateTotal(request, response);
 
+			const actualResponse = response.send.args[0][0];
 
-describe('A game with no pins knocked down', function() {
-	it('should get a score of 0', function() {
-		let request, response, spy;
-		request = response = {};
+			const expectedResponse = {
+				score: 0
+			};
 
-		request.body = {
-			frames: [{
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0'
-			}, {
-				first: '0',
-				second: '0',
-				bonus: ''
-			}]
-		};
-
-		response.send = sinon.spy();
-
-		bowlingScore.calculateTotal(request, response);
-
-		assert.equal(response.send.args[0][0].score, 0);
-	});
-});
-
-
-describe('An open frame', function() {
-	it('should have a score of the total pins knocked down', function() {
-		let request, response, spy;
-		request = response = {};
-
-		request.body = {
-			frames: [{
-				first: '3',
-				second: '5'
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: '',
-				bonus: ''
-			}]
-		};
-
-		response.send = sinon.spy();
-
-		bowlingScore.calculateTotal(request, response);
-
-		assert.equal(response.send.args[0][0].score, 8);
-	});
-});
-
-
-describe('A strike', function() {
-	it('should be worth 10 + the number of pins knocked down in the two following rolls', function() {
-		let request, response, spy;
-		request = response = {};
-
-		request.body = {
-			frames: [{
-				first: '10',
-				second: ''
-			}, {
-				first: '1',
-				second: '1'
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: '',
-				bonus: ''
-			}]
-		};
-
-		response.send = sinon.spy();
-
-		bowlingScore.calculateTotal(request, response);
-
-		assert.equal(response.send.args[0][0].score, 14); // 12 + 2
-	});
-});
-
-
-describe('A spare', function() {
-	it('should be worth 10 + the number of pins knocked down in the following roll', function() {
-		let request, response, spy;
-		request = response = {};
-
-		request.body = {
-			frames: [{
-				first: '5',
-				second: '5'
-			}, {
-				first: '1',
-				second: '1'
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: ''
-			}, {
-				first: '',
-				second: '',
-				bonus: ''
-			}]
-		};
-
-		response.send = sinon.spy();
-
-		bowlingScore.calculateTotal(request, response);
-
-		assert.equal(response.send.args[0][0].score, 13); // 11 + 2
+			assert.equal(JSON.stringify(actualResponse),
+				JSON.stringify(expectedResponse));
+		});
 	});
 });
