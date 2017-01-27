@@ -1,6 +1,8 @@
 const assert = require('assert');
 const sinon = require('sinon');
-const bowlingScore = require('./bowlingScore');
+const Calculator = require('./calculator');
+
+const bowlingScore = new Calculator();
 
 describe('A perfect Game', function() {
 	it('should get a score of 300', function() {
