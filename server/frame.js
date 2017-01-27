@@ -32,10 +32,6 @@ class Frame {
 	isSpare() {
 		return (this.first.score + this.second.score) === 10;
 	}
-
-	score() {
-		return this.first.score + this.second.score + this.bonus.score;
-	}
 }
 
 module.exports = Frame;
